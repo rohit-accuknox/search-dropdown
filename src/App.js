@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React, { useState } from "react";
 import "./App.css";
 let reset = ["Opera", "Chrome", "Safari", "Edge", "Firefox"];
@@ -15,13 +16,13 @@ function App() {
   ]);
 
   const addTag = (event) => {
-    console.log(event.target.innerText);
+    // console.log(event.target.innerText);
     setSelecteddata([...selecteddata, event.target.innerText]);
     const addOption = optiondata.filter((e) => e !== event.target.innerText);
     setOptiondata(addOption);
-    console.log(addOption);
+    // console.log(addOption);
     setIsVisible(false);
-    setSearch("")
+    setSearch("");
   };
 
   const deleteTag = (deletedVal) => {
@@ -33,7 +34,7 @@ function App() {
   const clearAll = () => {
     setSelecteddata([]);
     setOptiondata(reset);
-    setIsVisible(false)
+    setIsVisible(false);
   };
 
   const showList = () => {
