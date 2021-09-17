@@ -1,38 +1,111 @@
+*{
+  margin: 0;
+  padding: 0;
+}
 .App {
-  text-align: center;
+  align-items: center;
+  font-family: Arial;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  margin-top: 40px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+input{
+  /* padding: 10px; */
+  border-radius: 10px;
+  outline: none;
+  border: transparent;
+  background-color: transparent;
+  width: 60vw;
+}
+.options{
+  background-color: transparent;
+  padding: 10px;
+  width: 50vw;
+}
+.options:hover{
+  background-color: lightgray;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.tags-selected {
   display: flex;
-  flex-direction: column;
+  min-height: 46px;
+  border: 1px solid rgb(214, 216, 218);
+  padding: 0 8px;
+  border-radius: 6px;
+  width: 50vw;
+}
+
+.tags {
+  display: flex;
+  padding: 0;
+  margin: 8px 0 0 0;
+}
+
+.tag {
+  width: auto;
+  height: 32px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 0 8px;
+  font-size: 14px;
+  list-style: none;
+  border-radius: 2px;
+  margin: 0 8px 8px 0;
+  background: #e6e6e6;
 }
 
-.App-link {
-  color: #61dafb;
+button {
+  float: right;
+  border: none;
+  height: 32px;
+  margin-left: 10px;
+  background-color: transparent;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.icon{
+  padding: 20px;
+}
+@media(max-width:600px){
+  .tags{
+    display: grid;
+    flex-wrap: wrap;
+  padding: 0;
+  margin: 8px 0 0 0;
   }
-  to {
-    transform: rotate(360deg);
+  .tag {
+    width: auto;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;
+    font-size: 14px;
+    list-style: none;
+    border-radius: 2px;
+    margin: 0 8px 8px 0;
+    background: #e6e6e6;
+  }
+  .icon{
+    padding: 10px;
+  }
+  .tags-selected {
+    display: flex;
+    min-height: 46px;
+    border: 1px solid rgb(214, 216, 218);
+    padding: 0 8px;
+    border-radius: 6px;
+    width: 60vw;
+  }
+  .options{
+    background-color: transparent;
+    padding: 10px;
+    width: 60vw;
+  }
+  .options:hover{
+    background-color: lightgray;
   }
 }
