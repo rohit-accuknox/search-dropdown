@@ -1,19 +1,34 @@
-/* eslint-disable array-callback-return */
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import "./App.css";
-let reset = ["Opera", "Chrome", "Safari", "Edge", "Firefox"];
 
 function App() {
   const [selecteddata, setSelecteddata] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
   const [search, setSearch] = useState("");
-  const [optiondata, setOptiondata] = useState([
-    "Opera",
-    "Chrome",
-    "Safari",
-    "Edge",
-    "Firefox",
-  ]);
+  const [reset, setReset] = useState([]);
+  const [optiondata, setOptiondata] = useState([]);
+  const [list, setList] = useState(3);
+
+  const { data, isLoading, isError } = useQuery("data", () =>
+    axios.get("https://api.instantwebtools.net/v1/passenger?page=0&size=10")
+  );
+  // console.log(data);
+
+  useEffect(() => {
+    if (data) {
+      const names = [];
+      for (var i = 0; i < 10; i++) {
+        // console.log("data loaded : ", data.data.data[i].name);
+        // names.push(data.data.data[i].name);
+        names.push(data.data.data[i]._id);
+        // console.log("names", names);
+        setOptiondata(names);
+        setReset(names);
+      }
+    }
+  }, [data]);
 
   const addTag = (event) => {
     // console.log(event.target.innerText);
@@ -35,11 +50,23 @@ function App() {
     setSelecteddata([]);
     setOptiondata(reset);
     setIsVisible(false);
+    setSearch("");
+    setList(3);
   };
 
   const showList = () => {
     setIsVisible(true);
   };
+  const loadMore = () => {
+    setList((prevList) => prevList + 3);
+  };
+
+  if (isLoading) {
+    return <h1>Loading....</h1>;
+  }
+  if (isError) {
+    return <h1>Error...</h1>;
+  }
 
   return (
     <div className="App">
@@ -56,7 +83,6 @@ function App() {
             </li>
           ))}
         </ul>
-
         <input
           autocomplete="off"
           id="input"
@@ -66,12 +92,20 @@ function App() {
             setSearch(e.target.value);
           }}
           onClick={showList}
-        ></input>
+        />
         <i className="fas fa-times btn icon" onClick={clearAll}></i>
       </div>
+
+      {isVisible ? (
+        <button className="load" onClick={loadMore}>
+          Load More
+        </button>
+      ) : null}
+
       {isVisible ? (
         <div className="option-list">
           {optiondata
+            // eslint-disable-next-line array-callback-return
             .filter((val) => {
               if (search === "") {
                 return val;
@@ -81,6 +115,7 @@ function App() {
                 return val;
               }
             })
+            .splice(0, list)
             .map((option, id) => {
               return (
                 <p key={id} className="options" onClick={(e) => addTag(e)}>

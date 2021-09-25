@@ -1,7 +1,8 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
+
 .App {
   align-items: center;
   font-family: Arial;
@@ -12,25 +13,29 @@
 }
 
 
-input{
+input {
   /* padding: 10px; */
   border-radius: 10px;
   outline: none;
   border: transparent;
   background-color: transparent;
   width: 60vw;
+  flex: 2;
 }
-.options{
+
+.options {
   background-color: transparent;
   padding: 10px;
-  width: 50vw;
+  width: 47vw;
 }
-.options:hover{
+
+.options:hover {
   background-color: lightgray;
 }
 
 .tags-selected {
   display: flex;
+  flex-wrap: wrap;
   min-height: 46px;
   border: 1px solid rgb(214, 216, 218);
   padding: 0 8px;
@@ -40,6 +45,8 @@ input{
 
 .tags {
   display: flex;
+  flex-wrap: wrap;
+  /* flex: 2; */
   padding: 0;
   margin: 8px 0 0 0;
 }
@@ -65,17 +72,31 @@ button {
   margin-left: 10px;
   background-color: transparent;
 }
-
-.icon{
-  padding: 20px;
+.load{
+  background-color: lightgray;
+  padding: 10px 20px;
+  border-radius: 30px;
+  margin-top: 2px;
 }
-@media(max-width:600px){
-  .tags{
+.icon {
+  padding: 20px;
+  display: flex;
+}
+
+.option-list {
+  /* overflow-y: auto; */
+  height: 130px;
+  margin-top: 30px;
+}
+
+@media(max-width:600px) {
+  .tags {
     display: grid;
     flex-wrap: wrap;
-  padding: 0;
-  margin: 8px 0 0 0;
+    padding: 0;
+    margin: 8px 0 0 0;
   }
+
   .tag {
     width: auto;
     height: 32px;
@@ -89,23 +110,32 @@ button {
     margin: 0 8px 8px 0;
     background: #e6e6e6;
   }
-  .icon{
+
+  .icon {
     padding: 10px;
   }
+
   .tags-selected {
     display: flex;
+    flex-direction: column;
     min-height: 46px;
     border: 1px solid rgb(214, 216, 218);
     padding: 0 8px;
     border-radius: 6px;
-    width: 60vw;
+    width: 70vw;
   }
-  .options{
+
+  .options {
     background-color: transparent;
     padding: 10px;
-    width: 60vw;
+    width: 40vw;
   }
-  .options:hover{
+
+  .options:hover {
     background-color: lightgray;
+  }
+
+  .option-list {
+    min-height: 100px;
   }
 }
